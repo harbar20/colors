@@ -1,0 +1,7 @@
+discord
+re
+requests
+dotenv
+os
+pillow
+io

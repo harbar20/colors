@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 from PIL import Image, ImageColor
 from io import BytesIO
-import asyncio
 
 load_dotenv()
 bot = commands.Bot(command_prefix="c!")
@@ -15,6 +14,7 @@ token = os.environ.get("TOKEN")
 @bot.event
 async def on_ready():
     print("Colors is ready!")
+    await bot.change_presence(activity=discord.Game(name=f"with colors in {len(bot.guilds)} servers."))
 
 @bot.event
 async def on_message(message):
