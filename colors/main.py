@@ -35,8 +35,14 @@ async def on_message(message):
 
 @bot.command()
 async def color(ctx, *args):
+    files = []
     for hexCode in args:
-        print(hexCode)
-    pass
+        img = Image.new("RGB", (32, 32), ImageColor.getrgb(hexCode))
+        with BytesIO() as image_binary:
+            img.save(image_binary, 'PNG')
+            image_binary.seek(0)
+            files.append(discord.File(fp=image_binary, filename=f'{hexCode[1:]}.png'))
+            
+    await ctx.message.channel.send(files=files)
 
 bot.run(token)
